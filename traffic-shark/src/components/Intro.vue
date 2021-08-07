@@ -1,5 +1,11 @@
 <template>
   <section class="intro">
+        <Particles
+        id="tsparticles"
+        :particlesInit="particlesInit"
+        :particlesLoaded="particlesLoaded"
+        :options="option"
+      />
       <div class="container">
         <div class="intro-info">
             <h1 class="intro__title">Мобильная партнерская сеть</h1>
@@ -46,13 +52,103 @@
 
 <script>
 export default {
-    name: 'Intro'
+    name: 'Intro',
+    data (){
+    return{
+      option : {
+        background: {
+          color: {
+            value: 'transparent'
+          }
+        },
+        fpsLimit: 60,
+        interactivity: {
+          detectsOn: 'canvas',
+          events: {
+            onClick: {
+              enable: true,
+              mode: 'push'
+            },
+            onHover: {
+              enable: true,
+              mode: 'repulse'
+            },
+            resize: true
+          },
+          modes: {
+            bubble: {
+              distance: 400,
+              duration: 2,
+              opacity: 0.8,
+              size: 40
+            },
+            push: {
+              quantity: 4
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4
+            }
+          }
+        },
+        particles: {
+          color: {
+            value: '#ffffff'
+          },
+          links: {
+            color: '#ffffff',
+            distance: 150,
+            enable: true,
+            opacity: 0.5,
+            width: 1
+          },
+          collisions: {
+            enable: true
+          },
+          move: {
+            direction: 'none',
+            enable: true,
+            outMode: 'bounce',
+            random: false,
+            speed: 2,
+            straight: false
+          },
+          number: {
+            density: {
+              enable: true,
+              value_area: 800
+            },
+            value: 80
+          },
+          opacity: {
+            value: 0.5
+          },
+          shape: {
+            type: 'circle'
+          },
+          size: {
+            random: true,
+            value: 1
+          }
+        },
+        detectRetina: true
+      }
+    }
+  }
 }
 </script>
 
 <style lang="scss">
+    #tsparticles{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+    }
     .intro{
         background: url("../img/introbg.png");
+        position: relative;
         &-info{
             padding-top: 171px;
             text-align: center;
